@@ -1,7 +1,8 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { navigate } from "@reach/router";
 
-export default () => {
+export default ({ id }) => {
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
     const [desc, setDesc] = useState("");
@@ -10,22 +11,20 @@ export default () => {
         display: "block",
         margin: "5px"
     }
-    
     const buttonStyle = {
         display: "block",
-        margin: "1% 0 0 45%"
+        margin: "10px 0 0 45%"
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/products", {
+        axios.put(`http://localhost:8000/api/products/${id}`, {
             title, price, desc
         })
             .then(res => console.log(res))
             .catch(err => console.log(err));
+            navigate("/");
     };
-
-
 
     return (
         <form onSubmit={onSubmit}>
@@ -37,5 +36,5 @@ export default () => {
             <input type="text" name="desc" onChange={(e) => setDesc(e.target.value)} />
             <button style={buttonStyle}>Submit</button>
         </form>
-    )
+    );
 }
