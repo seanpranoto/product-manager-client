@@ -34,7 +34,7 @@ export default () => {
             <label style={style} htmlFor="price">Price: </label>
             <input type="text" name="price" onChange={(e) => setPrice(e.target.value)} />
             <label style={style} htmlFor="desc">Desctiption: </label>
-            <input type="text" name="desc" onChange={(e) => setDesc(e.target.value)} />
+            <textarea type="text" name="desc" onChange={(e) => setDesc(e.target.value)} />
             <button style={buttonStyle}>Submit</button>
         </form>
     )
